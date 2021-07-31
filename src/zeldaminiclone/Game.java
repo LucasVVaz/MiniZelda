@@ -15,12 +15,14 @@ public class Game extends Canvas implements Runnable,KeyListener{
 
 	public static int WIDTH = 480, HEIGHT = 480;
 	public Player player;
+	public World world;
 	
 	public Game() {
 		this.addKeyListener(this);
 		this.setPreferredSize(new Dimension(WIDTH,HEIGHT));
 		
-		player = new Player(0,0);
+		player = new Player(32,32);
+		world = new World();
 	}
 	
 	//RESPONSAVEL PELA LOGICA DO JOGO, MOVIMENTACAO DO PERSONAGEM ETC
@@ -47,8 +49,11 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		g.setColor(Color.black);
 		g.fillRect(0,0,WIDTH,WIDTH);
 		
+		//RENDERIZANDO O MUNDO
+		world.render(g);
 		//RENDERIZANDO O PLAYER
 		player.render(g);
+		
 		
 		//MOSTRAR O QUE TEM
 		bs.show();
